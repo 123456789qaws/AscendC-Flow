@@ -64,4 +64,4 @@ python -m tools.ascend_flow import-trace output/capture/trace.json --capture-man
 
 本仓库仅包含通用 Python 工具、手工模型样例和不依赖本地采集数据的单元测试。本机专用采集脚本、真实采集数据、日志、分析输出及论文资料不随仓库分发。原工作区的 CLI 集成测试依赖未分发的真实采集数据，因此不纳入本仓库；CLI 可按上面的样例命令验证。
 
-所有结果均为 AI 辅助研究材料，需使用者核查。
+所有结果均为辅助研究材料，需使用者核查。
