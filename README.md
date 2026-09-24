@@ -13,3 +13,4 @@ python -m unittest discover -s tests
 详见 [工具说明](tools/ascend_flow/README.md)。`examples/ascend_flow/` 包含正常流程、缺失通知、错误事件、重复通知与两个 tile 的有限模型。
 
 研究边界：本工具不解析任意 Ascend C 源码，不实现有限完全行为展开前缀，也不证明真实硬件无死锁。单次轨迹不能代表完整程序语义。
+         本工具不抓取 Ascend C 执行流程, 可用 https://github.com/Ascend/msopprof/blob/master/docs/zh/user_guide 官方工具进行采集
