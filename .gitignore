@@ -1,0 +1,30 @@
+# Python caches and environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+build/
+dist/
+*.egg-info/
+# Credentials and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.vscode/
+.idea/
+# Generated results and local research material
+/output/
+/tmp/
+/研究成果/
+/论文/
+/资料/
+*.log
+.DS_Store
+Thumbs.db

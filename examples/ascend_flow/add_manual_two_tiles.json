@@ -1,0 +1,351 @@
+{
+  "schema": "ascend-program/1",
+  "target": {
+    "soc": "Ascend910B4",
+    "cann": "9.1.0-beta.1"
+  },
+  "provenance": {
+    "kind": "manual_semantic_model",
+    "hardware_validated": false
+  },
+  "resources": [
+    {
+      "id": "X0",
+      "kind": "buffer"
+    },
+    {
+      "id": "Y0",
+      "kind": "buffer"
+    },
+    {
+      "id": "Z0",
+      "kind": "buffer"
+    }
+  ],
+  "flags": [
+    {
+      "id": "input_ready",
+      "core": 0,
+      "src": "MTE2",
+      "dst": "V",
+      "event_id": 0,
+      "initial": 0
+    },
+    {
+      "id": "input_consumed",
+      "core": 0,
+      "src": "V",
+      "dst": "MTE2",
+      "event_id": 0,
+      "initial": 0
+    },
+    {
+      "id": "output_ready",
+      "core": 0,
+      "src": "V",
+      "dst": "MTE3",
+      "event_id": 0,
+      "initial": 0
+    },
+    {
+      "id": "output_done",
+      "core": 0,
+      "src": "MTE3",
+      "dst": "V",
+      "event_id": 0,
+      "initial": 0
+    }
+  ],
+  "programs": [
+    {
+      "id": "copy_in",
+      "pipe": "MTE2",
+      "instructions": [
+        {
+          "op": "acquire",
+          "source": {
+            "origin": "research_authored_abstraction",
+            "not_hardware_instruction_mapping": true
+          },
+          "resource": "X0"
+        },
+        {
+          "op": "acquire",
+          "source": {
+            "origin": "research_authored_abstraction",
+            "not_hardware_instruction_mapping": true
+          },
+          "resource": "Y0"
+        },
+        {
+          "op": "work",
+          "source": {
+            "origin": "research_authored_abstraction",
+            "not_hardware_instruction_mapping": true
+          },
+          "label": "copy_XY"
+        },
+        {
+          "op": "set",
+          "source": {
+            "origin": "research_authored_abstraction",
+            "not_hardware_instruction_mapping": true
+          },
+          "flag": "input_ready"
+        },
+        {
+          "op": "wait",
+          "source": {
+            "origin": "research_authored_abstraction",
+            "not_hardware_instruction_mapping": true
+          },
+          "flag": "input_consumed"
+        },
+        {
+          "op": "release",
+          "source": {
+            "origin": "research_authored_abstraction",
+            "not_hardware_instruction_mapping": true
+          },
+          "resource": "Y0"
+        },
+        {
+          "op": "release",
+          "source": {
+            "origin": "research_authored_abstraction",
+            "not_hardware_instruction_mapping": true
+          },
+          "resource": "X0"
+        },
+        {
+          "op": "acquire",
+          "source": {
+            "origin": "research_authored_abstraction",
+            "not_hardware_instruction_mapping": true
+          },
+          "resource": "X0"
+        },
+        {
+          "op": "acquire",
+          "source": {
+            "origin": "research_authored_abstraction",
+            "not_hardware_instruction_mapping": true
+          },
+          "resource": "Y0"
+        },
+        {
+          "op": "work",
+          "source": {
+            "origin": "research_authored_abstraction",
+            "not_hardware_instruction_mapping": true
+          },
+          "label": "copy_XY"
+        },
+        {
+          "op": "set",
+          "source": {
+            "origin": "research_authored_abstraction",
+            "not_hardware_instruction_mapping": true
+          },
+          "flag": "input_ready"
+        },
+        {
+          "op": "wait",
+          "source": {
+            "origin": "research_authored_abstraction",
+            "not_hardware_instruction_mapping": true
+          },
+          "flag": "input_consumed"
+        },
+        {
+          "op": "release",
+          "source": {
+            "origin": "research_authored_abstraction",
+            "not_hardware_instruction_mapping": true
+          },
+          "resource": "Y0"
+        },
+        {
+          "op": "release",
+          "source": {
+            "origin": "research_authored_abstraction",
+            "not_hardware_instruction_mapping": true
+          },
+          "resource": "X0"
+        }
+      ]
+    },
+    {
+      "id": "compute",
+      "pipe": "V",
+      "instructions": [
+        {
+          "op": "wait",
+          "source": {
+            "origin": "research_authored_abstraction",
+            "not_hardware_instruction_mapping": true
+          },
+          "flag": "input_ready"
+        },
+        {
+          "op": "acquire",
+          "source": {
+            "origin": "research_authored_abstraction",
+            "not_hardware_instruction_mapping": true
+          },
+          "resource": "Z0"
+        },
+        {
+          "op": "work",
+          "source": {
+            "origin": "research_authored_abstraction",
+            "not_hardware_instruction_mapping": true
+          },
+          "label": "add"
+        },
+        {
+          "op": "set",
+          "source": {
+            "origin": "research_authored_abstraction",
+            "not_hardware_instruction_mapping": true
+          },
+          "flag": "input_consumed"
+        },
+        {
+          "op": "set",
+          "source": {
+            "origin": "research_authored_abstraction",
+            "not_hardware_instruction_mapping": true
+          },
+          "flag": "output_ready"
+        },
+        {
+          "op": "wait",
+          "source": {
+            "origin": "research_authored_abstraction",
+            "not_hardware_instruction_mapping": true
+          },
+          "flag": "output_done"
+        },
+        {
+          "op": "release",
+          "source": {
+            "origin": "research_authored_abstraction",
+            "not_hardware_instruction_mapping": true
+          },
+          "resource": "Z0"
+        },
+        {
+          "op": "wait",
+          "source": {
+            "origin": "research_authored_abstraction",
+            "not_hardware_instruction_mapping": true
+          },
+          "flag": "input_ready"
+        },
+        {
+          "op": "acquire",
+          "source": {
+            "origin": "research_authored_abstraction",
+            "not_hardware_instruction_mapping": true
+          },
+          "resource": "Z0"
+        },
+        {
+          "op": "work",
+          "source": {
+            "origin": "research_authored_abstraction",
+            "not_hardware_instruction_mapping": true
+          },
+          "label": "add"
+        },
+        {
+          "op": "set",
+          "source": {
+            "origin": "research_authored_abstraction",
+            "not_hardware_instruction_mapping": true
+          },
+          "flag": "input_consumed"
+        },
+        {
+          "op": "set",
+          "source": {
+            "origin": "research_authored_abstraction",
+            "not_hardware_instruction_mapping": true
+          },
+          "flag": "output_ready"
+        },
+        {
+          "op": "wait",
+          "source": {
+            "origin": "research_authored_abstraction",
+            "not_hardware_instruction_mapping": true
+          },
+          "flag": "output_done"
+        },
+        {
+          "op": "release",
+          "source": {
+            "origin": "research_authored_abstraction",
+            "not_hardware_instruction_mapping": true
+          },
+          "resource": "Z0"
+        }
+      ]
+    },
+    {
+      "id": "copy_out",
+      "pipe": "MTE3",
+      "instructions": [
+        {
+          "op": "wait",
+          "source": {
+            "origin": "research_authored_abstraction",
+            "not_hardware_instruction_mapping": true
+          },
+          "flag": "output_ready"
+        },
+        {
+          "op": "work",
+          "source": {
+            "origin": "research_authored_abstraction",
+            "not_hardware_instruction_mapping": true
+          },
+          "label": "copy_Z"
+        },
+        {
+          "op": "set",
+          "source": {
+            "origin": "research_authored_abstraction",
+            "not_hardware_instruction_mapping": true
+          },
+          "flag": "output_done"
+        },
+        {
+          "op": "wait",
+          "source": {
+            "origin": "research_authored_abstraction",
+            "not_hardware_instruction_mapping": true
+          },
+          "flag": "output_ready"
+        },
+        {
+          "op": "work",
+          "source": {
+            "origin": "research_authored_abstraction",
+            "not_hardware_instruction_mapping": true
+          },
+          "label": "copy_Z"
+        },
+        {
+          "op": "set",
+          "source": {
+            "origin": "research_authored_abstraction",
+            "not_hardware_instruction_mapping": true
+          },
+          "flag": "output_done"
+        }
+      ]
+    }
+  ]
+}
